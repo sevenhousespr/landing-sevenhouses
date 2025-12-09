@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Seven Houses - Preventivatore Ristrutturazione</title>
+  <style>
+    :root {
+      --verde: #1a8b4a;
+      --verde-scuro: #156a3a;
+      --nero: #111111;
+      --grigio: #f4f4f4;
+      --grigio-testo: #555555;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--grigio);
+      color: var(--nero);
+    }
+
+    .topbar {
+      background:#ffffff;
+      border-bottom:1px solid #e0e0e0;
+      padding:8px 20px;
+    }
+
+    .topbar-inner {
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .topbar img {
+      height:38px;
+    }
+
+    .topbar span {
+      font-size:11px;
+      color:#777777;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--nero), #2b2b2b);
+      color: #ffffff;
+      padding: 40px 20px;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .hero-text {
+      flex: 1 1 320px;
+      padding-right: 10px;
+    }
+
+    .hero-text h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .hero-text p {
+      margin-top: 0;
+      color: #e0e0e0;
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--verde);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlights {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .highlight {
+      flex: 1 1 160px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .highlight h3 {
+      margin: 0 0 4px 0;
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    .highlight p {
+      margin: 0;
+      font-size: 12px;
+      color: #cfcfcf;
+    }
+
+    .hero-form {
+      flex: 1 1 340px;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px 22px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .hero-form h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: var(--nero);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 13px;
+      color: var(--nero);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    textarea { resize: vertical; }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .col {
+      flex: 1 1 160px;
+      min-width: 0;
+    }
+
+    .checkbox-line {
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: normal;
+    }
+
+    .checkbox-line input {
+      margin-right: 6px;
+    }
+
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 10px 20px;
+      background: var(--verde);
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--verde-scuro);
+    }
+
+    small {
+      color: #777777;
+      font-size: 11px;
+    }
+
+    .section-bottom {
+      max-width: 1100px;
+      margin: 25px auto 40px;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .bottom-block {
+      flex: 1 1 260px;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 15px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .bottom-block h3 {
+      margin-top: 0;
+      font-size: 15px;
+      color: var(--verde-scuro);
+    }
+
+    .bottom-block p {
+      margin: 5px 0 0 0;
+      font-size: 13px;
+      color: var(--grigio-testo);
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Seven Houses">
+      <span>Preventivatore ristrutturazione per clienti privati · Parma e provincia</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="badge">Richiesta preventivo online</span>
+        <h1>Richiedi un preventivo indicativo per la tua ristrutturazione</h1>
+        <p>
+          Compila il form con i dati del tuo appartamento: il team Seven Houses analizzerà la richiesta
+          e ti ricontatterà con una proposta personalizzata e un eventuale sopralluogo.
+        </p>
+
+        <div class="hero-highlights">
+          <div class="highlight">
+            <h3>Richiesta veloce</h3>
+            <p>Pochi passaggi, le informazioni essenziali per valutare il tuo progetto.</p>
+          </div>
+          <div class="highlight">
+            <h3>Analisi interna</h3>
+            <p>Utilizziamo i dati inseriti per stimare volumi, lavorazioni e ordine di grandezza dei costi.</p>
+          </div>
+          <div class="highlight">
+            <h3>Contatto diretto</h3>
+            <p>Un consulente Seven Houses ti richiama per definire tempi, materiali e soluzioni.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-form">
+        <h2>Richiedi ora il tuo preventivo</h2>
+        <form method="post">
+          <h3 style="font-size:14px; margin-bottom:6px;">Dati personali</h3>
+
+          <div class="row">
+            <div class="col">
+              <label>Nome</label>
+              <input type="text" name="nome" required>
+            </div>
+            <div class="col">
+              <label>Cognome</label>
+              <input type="text" name="cognome" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Email</label>
+              <input type="email" name="email" required>
+            </div>
+            <div class="col">
+              <label>Telefono</label>
+              <input type="tel" name="telefono" required>
+            </div>
+          </div>
+
+          <h3 style="font-size:14px; margin-top:16px; margin-bottom:6px;">Dati immobile</h3>
+
+          <label>Comune / Zona</label>
+          <input type="text" name="zona" placeholder="Es. Parma - Oltretorrente" required>
+
+          <label>Indirizzo</label>
+          <input type="text" name="indirizzo" placeholder="Via e numero civico" required>
+
+          <label>Metri quadri appartamento</label>
+          <input type="number" name="mq" min="0" required>
+
+          <h3 style="font-size:14px; margin-top:16px; margin-bottom:6px;">Lavori richiesti (per analisi interna)</h3>
+
+          <label>Budget ristrutturazione generale (se già lo hai in mente)</label>
+          <input type="number" name="budget_generico" min="0" value="0">
+
+          <div class="row">
+            <div class="col">
+              <label>Numero bagni</label>
+              <input type="number" name="bagni" min="0" value="1">
+            </div>
+            <div class="col">
+              <label class="checkbox-line">
+                <input type="checkbox" name="rifare_bagni">
+                Ristrutturare i bagni
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Numero finestre</label>
+              <input type="number" name="finestre" min="0" value="0">
+            </div>
+            <div class="col">
+              <label class="checkbox-line">
+                <input type="checkbox" name="rifare_finestre">
+                Sostituire le finestre
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Numero portefinestre</label>
+              <input type="number" name="portefinestre" min="0" value="0">
+            </div>
+            <div class="col">
+              <label class="checkbox-line">
+                <input type="checkbox" name="rifare_portefinestre">
+                Sostituire le portefinestre
+              </label>
+            </div>
+          </div>
+
+          <label class="checkbox-line">
+            <input type="checkbox" name="rifare_impianto">
+            Rifare impianto elettrico
+          </label>
+
+          <label class="checkbox-line">
+            <input type="checkbox" name="rifare_pavimenti">
+            Rifare pavimenti
+          </label>
+
+          <label class="checkbox-line">
+            <input type="checkbox" name="tinteggio">
+            Tinteggiare tutta la casa
+          </label>
+
+          <label>Descrizione lavori extra (opzionale)</label>
+          <textarea name="extra_descrizione" rows="2" placeholder="Es. controsoffitti, climatizzazione, opere particolari, ecc."></textarea>
+
+          <label>Costo extra stimato (euro, se già lo conosci - opzionale)</label>
+          <input type="number" name="extra_importo" min="0" value="0">
+
+          <small>
+            I dati verranno utilizzati dal team Seven Houses per preparare una stima interna e contattarti
+            per un sopralluogo e un preventivo dettagliato. Nessun costo viene mostrato in questa pagina.
+          </small>
+
+          <button type="submit">Invia richiesta di preventivo</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-bottom">
+    <div class="bottom-block">
+      <h3>Sopralluogo e verifica</h3>
+      <p>La richiesta online è il primo passo. Un nostro tecnico può effettuare un sopralluogo
+         per definire meglio lavorazioni, materiali e tempi.</p>
+    </div>
+    <div class="bottom-block">
+      <h3>Un unico referente</h3>
+      <p>Dalla progettazione alla consegna chiavi in mano, coordiniamo imprese e fornitori
+         per semplificarti la ristrutturazione.</p>
+    </div>
+    <div class="bottom-block">
+      <h3>Focalizzati su Parma</h3>
+      <p>Conosciamo quartieri, palazzi e vincoli della città: questo ci permette di fornirti
+         stime realistiche e interventi mirati.</p>
+    </div>
+  </section>
+</body>
+</html>
